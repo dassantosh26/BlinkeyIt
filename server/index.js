@@ -8,6 +8,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan"; //It helps log requests made to the server, providing useful details like HTTP method, URL, status code, and response time.
 import helmet from "helmet"; //It is used to enhance the security of application by setting various HTTP headers.Protect  app from several well-known web vulnerabilities, such as cross-site scripting (XSS), clickjacking, and other attacks that rely on manipulating HTTP headers.
 import connectDB from "./config/connectDB.js";
+import userRouter from "./routes/user.route.js";
 
 const app = express();
 
@@ -36,6 +37,8 @@ app.get("/", (req, res) => {
     message: "Server is running smoothly",
   });
 });
+
+app.use("/api/user", userRouter);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
